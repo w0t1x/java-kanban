@@ -6,8 +6,6 @@ import java.util.Objects;
 public class Epic extends Task {
     private ArrayList<Integer> subtaskIds;
 
-    // Конструкторы
-
     public Epic(String name, String description) {
         this(-1, name, description);
     }
@@ -17,8 +15,6 @@ public class Epic extends Task {
         this.subtaskIds = new ArrayList<>();
     }
 
-    // Геттеры и сеттеры
-
     public ArrayList<Integer> getSubtaskIds() {
         return subtaskIds;
     }
@@ -26,12 +22,6 @@ public class Epic extends Task {
     public void addSubtaskId(int id) {
         subtaskIds.add(id);
     }
-
-    public void removeSubtaskId(int id) {
-        subtaskIds.remove(Integer.valueOf(id));
-    }
-
-    // Переопределение
 
     @Override
     public boolean equals(Object object) {
