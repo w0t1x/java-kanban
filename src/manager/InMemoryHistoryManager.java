@@ -13,12 +13,10 @@ public class InMemoryHistoryManager implements HistoryManager {
     public void add(Task task) {
         if (task == null) return;
 
-        // Если задача уже есть — удаляем её из текущей позиции
         if (nodeIdMap.containsKey(task.getId())) {
             removeNode(nodeIdMap.get(task.getId()));
         }
 
-        // Добавляем в конец
         Node newNode = new Node(task);
         linkLast(newNode);
         nodeIdMap.put(task.getId(), newNode);
