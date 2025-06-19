@@ -43,13 +43,13 @@ public class InMemoryHistoryManager implements HistoryManager {
         if (prev != null) {
             prev.next = next;
         } else {
-            head = next;
+            head = next; // node был первым
         }
 
         if (next != null) {
             next.prev = prev;
         } else {
-            tail = prev;
+            tail = prev; // node был последним
         }
 
         node.prev = node.next = null;
