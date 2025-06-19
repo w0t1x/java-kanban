@@ -15,6 +15,7 @@ public class TaskManagerTest {
         taskManager = Managers.getDefault();
     }
 
+    
     @Test
     void addNewTask() {
         Task task = new Task("Test addNewTask", "Test addNewTask description");
