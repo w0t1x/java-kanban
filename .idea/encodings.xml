@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
-    <file url="file://$PROJECT_DIR$/src/Main.java" charset="windows-1251" />
-    <file url="file://$PROJECT_DIR$/test/TaskManagerTest.java" charset="windows-1251" />
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/src/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/manager/HistoryManager.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/manager/InMemoryHistoryManager.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/manager/Managers.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/manager/Node.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/manager/TaskManager.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/task/Epic.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/task/Status.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/task/Subtask.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/task/Task.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/test/TaskManagerTest.java" charset="UTF-8" />
   </component>
 </project>

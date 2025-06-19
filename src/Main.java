@@ -5,17 +5,17 @@ public class Main {
     public static void main(String[] args) {
         TaskManager taskManager = Managers.getDefault();
 
-        Task t1 = new Task("Купить хлеб", "Свежий бородинский");
-        Task t2 = new Task("Позвонить врачу", "Записаться на приём");
+        Task t1 = new Task("РљСѓРїРёС‚СЊ С…Р»РµР±", "РЎРІРµР¶РёР№ Р±РѕСЂРѕРґРёРЅСЃРєРёР№");
+        Task t2 = new Task("РџРѕР·РІРѕРЅРёС‚СЊ РІСЂР°С‡Сѓ", "Р—Р°РїРёСЃР°С‚СЊСЃСЏ РЅР° РїСЂРёС‘Рј");
 
         taskManager.createTask(t1);
         taskManager.createTask(t2);
 
-        Epic epic = new Epic("Переезд", "Собрать вещи");
+        Epic epic = new Epic("РџРµСЂРµРµР·Рґ", "РЎРѕР±СЂР°С‚СЊ РІРµС‰Рё");
         taskManager.createEpic(epic);
 
-        Subtask s1 = new Subtask("Упаковать книги", "В коробки", Status.NEW, epic.getId());
-        Subtask s2 = new Subtask("Найти грузчиков", "Оформить заказ", Status.NEW, epic.getId());
+        Subtask s1 = new Subtask("РЈРїР°РєРѕРІР°С‚СЊ РєРЅРёРіРё", "Р’ РєРѕСЂРѕР±РєРё", Status.NEW, epic.getId());
+        Subtask s2 = new Subtask("РќР°Р№С‚Рё РіСЂСѓР·С‡РёРєРѕРІ", "РћС„РѕСЂРјРёС‚СЊ Р·Р°РєР°Р·", Status.NEW, epic.getId());
         taskManager.createSubtask(s1);
         taskManager.createSubtask(s2);
 
@@ -23,17 +23,17 @@ public class Main {
         taskManager.getTask(t2.getId());
         taskManager.getTask(t1.getId());
 
-        System.out.println("История после просмотров:");
+        System.out.println("РСЃС‚РѕСЂРёСЏ РїРѕСЃР»Рµ РїСЂРѕСЃРјРѕС‚СЂРѕРІ:");
         taskManager.getHistory().forEach(System.out::println);
 
         taskManager.deleteTask(t1.getId());
 
-        System.out.println("\nИстория после удаления t1:");
+        System.out.println("\nРСЃС‚РѕСЂРёСЏ РїРѕСЃР»Рµ СѓРґР°Р»РµРЅРёСЏ t1:");
         taskManager.getHistory().forEach(System.out::println);
 
         taskManager.deleteEpic(epic.getId());
 
-        System.out.println("\nИстория после удаления эпика:");
+        System.out.println("\nРСЃС‚РѕСЂРёСЏ РїРѕСЃР»Рµ СѓРґР°Р»РµРЅРёСЏ СЌРїРёРєР°:");
         taskManager.getHistory().forEach(System.out::println);
     }
 }
