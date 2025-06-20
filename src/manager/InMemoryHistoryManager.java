@@ -13,12 +13,12 @@ public class InMemoryHistoryManager implements HistoryManager {
     public void add(Task task) {
         if (task == null) return;
 
-        // Если задача уже есть — удаляем её из текущей позиции
+        // Если задача уже есть — удаляем её из истории
         if (nodeIdMap.containsKey(task.getId())) {
             removeNode(nodeIdMap.get(task.getId()));
         }
 
-        // Добавляем в конец
+        // Добавляем новую в конец
         Node newNode = new Node(task);
         linkLast(newNode);
         nodeIdMap.put(task.getId(), newNode);
@@ -28,32 +28,31 @@ public class InMemoryHistoryManager implements HistoryManager {
         if (tail == null) {
             head = tail = node;
         } else {
-            tail.next = node;
-            node.prev = tail;
+            tail.setNext(node);
+            node.setPrev(tail);
             tail = node;
         }
     }
 
     private void unlink(Node node) {
-        if (node == null) return;
-
-        Node prev = node.prev;
-        Node next = node.next;
+        Node prev = node.getPrev();
+        Node next = node.getNext();
 
         if (prev != null) {
-            prev.next = next;
+            prev.setNext(next);
         } else {
-            head = next; // node был первым
+            head = next; // node был головой
         }
 
         if (next != null) {
-            next.prev = prev;
+            next.setPrev(prev);
         } else {
-            tail = prev; // node был последним
+            tail = prev; // node был хвостом
         }
 
-        node.prev = node.next = null;
-        nodeIdMap.remove(node.task.getId());
+        node.setPrev(null);
+        node.setNext(null);
+        nodeIdMap.remove(node.getTask().getId());
     }
 
     private void removeNode(Node node) {
@@ -75,8 +74,8 @@ public class InMemoryHistoryManager implements HistoryManager {
         List<Task> history = new ArrayList<>();
         Node current = head;
         while (current != null) {
-            history.add(current.task);
-            current = current.next;
+            history.add(current.getTask());
+            current = current.getNext();
         }
         return history;
     }

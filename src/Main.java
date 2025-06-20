@@ -19,10 +19,10 @@ public class Main {
         taskManager.createSubtask(s1);
         taskManager.createSubtask(s2);
 
-        // Просматриваем задачи несколько раз
+        // Просматриваем несколько раз
         taskManager.getTask(t1.getId());
         taskManager.getTask(t2.getId());
-        taskManager.getTask(t1.getId()); // Должен остаться только один экземпляр t1
+        taskManager.getTask(t1.getId());
 
         System.out.println("История после просмотров:");
         taskManager.getHistory().forEach(System.out::println);
