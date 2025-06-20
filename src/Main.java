@@ -5,47 +5,36 @@ public class Main {
     public static void main(String[] args) {
         TaskManager taskManager = Managers.getDefault();
 
-        // Создаем обычные задачи
-        Task task1 = new Task("Купить хлеб", "Свежий бородинский");
-        Task task2 = new Task("Позвонить врачу", "Записаться на прием");
-        taskManager.createTask(task1);
-        taskManager.createTask(task2);
+        Task t1 = new Task("РљСѓРїРёС‚СЊ С…Р»РµР±", "РЎРІРµР¶РёР№ Р±РѕСЂРѕРґРёРЅСЃРєРёР№");
+        Task t2 = new Task("РџРѕР·РІРѕРЅРёС‚СЊ РІСЂР°С‡Сѓ", "Р—Р°РїРёСЃР°С‚СЊСЃСЏ РЅР° РїСЂРёС‘Рј");
 
-        // Создаем эпик с двумя подзадачами
-        Epic epic1 = new Epic("Переезд", "Собрать вещи, найти грузчиков");
-        taskManager.createEpic(epic1);
+        taskManager.createTask(t1);
+        taskManager.createTask(t2);
 
-        Subtask sub1 = new Subtask("Упаковать книги", "В коробки", Status.NEW, epic1.getId());
-        Subtask sub2 = new Subtask("Найти грузчиков", "Оформить заказ", Status.NEW, epic1.getId());
-        taskManager.createSubtask(sub1);
-        taskManager.createSubtask(sub2);
+        Epic epic = new Epic("РџРµСЂРµРµР·Рґ", "РЎРѕР±СЂР°С‚СЊ РІРµС‰Рё");
+        taskManager.createEpic(epic);
 
-        // Выводим все задачи
-        System.out.println("Все задачи:");
-        taskManager.getAllTasks().forEach(System.out::println);
+        Subtask s1 = new Subtask("РЈРїР°РєРѕРІР°С‚СЊ РєРЅРёРіРё", "Р’ РєРѕСЂРѕР±РєРё", Status.NEW, epic.getId());
+        Subtask s2 = new Subtask("РќР°Р№С‚Рё РіСЂСѓР·С‡РёРєРѕРІ", "РћС„РѕСЂРјРёС‚СЊ Р·Р°РєР°Р·", Status.NEW, epic.getId());
+        taskManager.createSubtask(s1);
+        taskManager.createSubtask(s2);
 
-        System.out.println("\nВсе эпики:");
-        taskManager.getAllEpics().forEach(System.out::println);
+        // РџСЂРѕСЃРјР°С‚СЂРёРІР°РµРј Р·Р°РґР°С‡Рё РЅРµСЃРєРѕР»СЊРєРѕ СЂР°Р·
+        taskManager.getTask(t1.getId());
+        taskManager.getTask(t2.getId());
+        taskManager.getTask(t1.getId()); // Р”РѕР»Р¶РµРЅ РѕСЃС‚Р°С‚СЊСЃСЏ С‚РѕР»СЊРєРѕ РѕРґРёРЅ СЌРєР·РµРјРїР»СЏСЂ t1
 
-        System.out.println("\nПодзадачи первого эпика:");
-        taskManager.getSubtasksByEpic(epic1).forEach(System.out::println);
+        System.out.println("РСЃС‚РѕСЂРёСЏ РїРѕСЃР»Рµ РїСЂРѕСЃРјРѕС‚СЂРѕРІ:");
+        taskManager.getHistory().forEach(System.out::println);
 
-        // Обновляем статусы подзадач
-        sub1.setStatus(Status.DONE);
-        taskManager.createSubtask(sub1);
-        sub2.setStatus(Status.DONE);
-        taskManager.createSubtask(sub2);
+        taskManager.deleteTask(t1.getId());
 
-        System.out.println("\nСтатус эпика после завершения подзадач:");
-        System.out.println(taskManager.getTask(epic1.getId()));
+        System.out.println("\nРСЃС‚РѕСЂРёСЏ РїРѕСЃР»Рµ СѓРґР°Р»РµРЅРёСЏ t1:");
+        taskManager.getHistory().forEach(System.out::println);
 
-        // Удаляем эпик
-        taskManager.deleteEpic(epic1.getId());
-        System.out.println("Оставшиеся задачи:");
-        taskManager.getAllTasks().forEach(System.out::println);
+        taskManager.deleteEpic(epic.getId());
 
-        // Получить историю просмотров
-        System.out.println("\nИстория просмотров:");
+        System.out.println("\nРСЃС‚РѕСЂРёСЏ РїРѕСЃР»Рµ СѓРґР°Р»РµРЅРёСЏ СЌРїРёРєР°:");
         taskManager.getHistory().forEach(System.out::println);
     }
 }
