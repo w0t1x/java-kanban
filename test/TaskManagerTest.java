@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static task.Status.NEW;
 
 class TaskManagerTest {
     private HistoryManager historyManager;

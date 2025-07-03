@@ -1,40 +1,37 @@
-import manager.*;
-import task.*;
+import manager.FileBackedTaskManager;
+import manager.TaskManager;
+import task.Epic;
+import task.Status;
+import task.Subtask;
+import task.Task;
+
+import java.io.File;
 
 public class Main {
     public static void main(String[] args) {
-        TaskManager taskManager = Managers.getDefault();
+        File file = new File("tasks.csv");
+        TaskManager manager = new FileBackedTaskManager(file);
 
-        Task t1 = new Task("Купить хлеб", "Свежий бородинский");
-        Task t2 = new Task("Позвонить врачу", "Записаться на приём");
+        Task task1 = new Task("Купить хлеб", "Свежий бородинский");
+        manager.createTask(task1);
 
-        taskManager.createTask(t1);
-        taskManager.createTask(t2);
+        Epic epic1 = new Epic("Переезд", "Собрать вещи");
+        manager.createEpic(epic1);
 
-        Epic epic = new Epic("Переезд", "Собрать вещи");
-        taskManager.createEpic(epic);
+        Subtask sub1 = new Subtask("Упаковать книги", "В коробки", Status.NEW, epic1.getId());
+        manager.createSubtask(sub1);
 
-        Subtask s1 = new Subtask("Упаковать книги", "В коробки", Status.NEW, epic.getId());
-        Subtask s2 = new Subtask("Найти грузчиков", "Оформить заказ", Status.NEW, epic.getId());
-        taskManager.createSubtask(s1);
-        taskManager.createSubtask(s2);
+        System.out.println("Задачи до перезагрузки:");
+        manager.getAllTasks().forEach(System.out::println);
+        manager.getAllEpics().forEach(System.out::println);
+        manager.getAllSubtasks().forEach(System.out::println);
 
-        // Просматриваем несколько раз
-        taskManager.getTask(t1.getId());
-        taskManager.getTask(t2.getId());
-        taskManager.getTask(t1.getId());
+        // Пересоздаем менеджер из файла
+        TaskManager loadedManager = FileBackedTaskManager.loadFromFile(file);
 
-        System.out.println("История после просмотров:");
-        taskManager.getHistory().forEach(System.out::println);
-
-        taskManager.deleteTask(t1.getId());
-
-        System.out.println("\nИстория после удаления t1:");
-        taskManager.getHistory().forEach(System.out::println);
-
-        taskManager.deleteEpic(epic.getId());
-
-        System.out.println("\nИстория после удаления эпика:");
-        taskManager.getHistory().forEach(System.out::println);
+        System.out.println("\nЗадачи после загрузки из файла:");
+        loadedManager.getAllTasks().forEach(System.out::println);
+        loadedManager.getAllEpics().forEach(System.out::println);
+        loadedManager.getAllSubtasks().forEach(System.out::println);
     }
 }
