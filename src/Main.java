@@ -1,9 +1,6 @@
 import manager.FileBackedTaskManager;
 import manager.TaskManager;
-import task.Epic;
-import task.Status;
-import task.Subtask;
-import task.Task;
+import task.*;
 
 import java.io.File;
 
@@ -12,7 +9,7 @@ public class Main {
         File file = new File("tasks.csv");
         TaskManager manager = new FileBackedTaskManager(file);
 
-        Task task1 = new Task("Купить хлеб", "Свежий бородинский");
+        RealizationTask task1 = new RealizationTask("Купить хлеб", "Свежий бородинский");
         manager.createTask(task1);
 
         Epic epic1 = new Epic("Переезд", "Собрать вещи");

@@ -1,12 +1,13 @@
 package manager;
 
-import task.*;
+import task.Epic;
+import task.Subtask;
+import task.Task;
 
 import java.util.Collection;
 import java.util.List;
 
 public interface TaskManager {
-
     Task createTask(Task task);
 
     Task getTask(int id);

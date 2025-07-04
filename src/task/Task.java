@@ -2,7 +2,7 @@ package task;
 
 import java.util.Objects;
 
-public class Task {
+public abstract class Task {
     private String name;
     private String description;
     private int id;
@@ -45,12 +45,15 @@ public class Task {
         this.status = status;
     }
 
+    public abstract TaskType getType();
+
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Task task = (Task) object;
-        return id == task.id && Objects.equals(name, task.name) && Objects.equals(description, task.description)
+        return id == task.id && Objects.equals(name, task.name)
+                && Objects.equals(description, task.description)
                 && status == task.status;
     }
 
