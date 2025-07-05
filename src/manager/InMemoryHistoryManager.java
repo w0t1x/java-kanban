@@ -12,13 +12,9 @@ public class InMemoryHistoryManager implements HistoryManager {
     @Override
     public void add(Task task) {
         if (task == null) return;
-
-        // Если задача уже есть — удаляем её из истории
         if (nodeIdMap.containsKey(task.getId())) {
             removeNode(nodeIdMap.get(task.getId()));
         }
-
-        // Добавляем новую в конец
         Node newNode = new Node(task);
         linkLast(newNode);
         nodeIdMap.put(task.getId(), newNode);
@@ -37,19 +33,16 @@ public class InMemoryHistoryManager implements HistoryManager {
     private void unlink(Node node) {
         Node prev = node.getPrev();
         Node next = node.getNext();
-
         if (prev != null) {
             prev.setNext(next);
         } else {
-            head = next; // node был головой
+            head = next;
         }
-
         if (next != null) {
             next.setPrev(prev);
         } else {
-            tail = prev; // node был хвостом
+            tail = prev;
         }
-
         node.setPrev(null);
         node.setNext(null);
         nodeIdMap.remove(node.getTask().getId());

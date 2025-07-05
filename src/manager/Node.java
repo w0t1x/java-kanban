@@ -9,8 +9,6 @@ public class Node {
 
     public Node(Task task) {
         this.task = task;
-        this.prev = null;
-        this.next = null;
     }
 
     public Task getTask() {

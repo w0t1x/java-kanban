@@ -1,0 +1,4 @@
+id,type,name,status,description,epic
+1,TASK,Купить хлеб,NEW,Свежий бородинский
+2,EPIC,Переезд,NEW,Собрать вещи
+3,SUBTASK,Упаковать книги,NEW,В коробки,2
