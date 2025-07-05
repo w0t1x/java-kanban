@@ -64,11 +64,11 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", id=" + id +
-                ", status=" + status +
-                '}';
+        return String.join(",",
+                String.valueOf(id),
+                getType().name(),
+                name,
+                status.name(),
+                description);
     }
 }

@@ -52,53 +52,23 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
             writer.newLine();
 
             for (Task task : getAllTasks()) {
-                writer.write(toString(task));
+                writer.write(task.toString());
                 writer.newLine();
             }
 
             for (Epic epic : getAllEpics()) {
-                writer.write(toString(epic));
+                writer.write(epic.toString());
                 writer.newLine();
             }
 
             for (Subtask subtask : getAllSubtasks()) {
-                writer.write(toString(subtask));
+                writer.write(subtask.toString());
                 writer.newLine();
             }
 
         } catch (IOException e) {
             throw new ManagerSaveException("Ошибка сохранения в файл", e);
         }
-    }
-
-    private String toString(Task task) {
-        return String.join(",",
-                String.valueOf(task.getId()),
-                task.getType().name(),
-                task.getName(),
-                task.getStatus().name(),
-                task.getDescription(),
-                "");
-    }
-
-    private String toString(Epic epic) {
-        return String.join(",",
-                String.valueOf(epic.getId()),
-                epic.getType().name(),
-                epic.getName(),
-                epic.getStatus().name(),
-                epic.getDescription(),
-                "");
-    }
-
-    private String toString(Subtask subtask) {
-        return String.join(",",
-                String.valueOf(subtask.getId()),
-                subtask.getType().name(),
-                subtask.getName(),
-                subtask.getStatus().name(),
-                subtask.getDescription(),
-                String.valueOf(subtask.getEpicId()));
     }
 
     public static FileBackedTaskManager loadFromFile(File file) {
