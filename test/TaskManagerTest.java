@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static task.Status.NEW;
 
 class TaskManagerTest {
     private HistoryManager historyManager;
@@ -17,7 +18,7 @@ class TaskManagerTest {
 
     @Test
     void shouldAddAndGetHistory() {
-        Task task = new Task("Test", "Desc");
+        Task task = new RealizationTask("Test", "Desc");
         historyManager.add(task);
         assertEquals(1, historyManager.getHistory().size());
         assertEquals(task, historyManager.getHistory().get(0));
@@ -25,7 +26,7 @@ class TaskManagerTest {
 
     @Test
     void shouldRemoveDuplicates() {
-        Task task = new Task("Test", "Desc");
+        Task task = new RealizationTask("Test", "Desc");
         historyManager.add(task);
         historyManager.add(task);
         assertEquals(1, historyManager.getHistory().size());
@@ -33,7 +34,7 @@ class TaskManagerTest {
 
     @Test
     void shouldRemoveById() {
-        Task task = new Task("Test", "Desc");
+        Task task = new RealizationTask("Test", "Desc");
         historyManager.add(task);
         historyManager.remove(task.getId());
         assertTrue(historyManager.getHistory().isEmpty());
