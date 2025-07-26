@@ -18,17 +18,27 @@ public interface TaskManager {
 
     void deleteAllTasks();
 
+    void updateTask(Task task);
+
     Epic createEpic(Epic epic);
 
     Collection<Epic> getAllEpics();
 
     void deleteEpic(int id);
 
+    void updateEpic(Epic epic);
+
     Subtask createSubtask(Subtask subtask);
 
     Collection<Subtask> getAllSubtasks();
 
     List<Subtask> getSubtasksByEpic(Epic epic);
+
+    void deleteSubtask(int id);
+
+    void updateSubtask(Subtask subtask);
+
+    List<Task> getPrioritizedTasks(); // Новый метод
 
     List<Task> getHistory();
 }

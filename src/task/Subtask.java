@@ -1,5 +1,7 @@
 package task;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Subtask extends Task {
@@ -15,8 +17,18 @@ public class Subtask extends Task {
         this.epicId = epicId;
     }
 
+    // Конструктор с новыми полями
+    public Subtask(int id, String name, String description, Status status, int epicId, Duration duration, LocalDateTime startTime) {
+        super(id, name, description, status, duration, startTime);
+        this.epicId = epicId;
+    }
+
     public int getEpicId() {
         return epicId;
+    }
+
+    public void setEpicId(int epicId) {
+        this.epicId = epicId;
     }
 
     @Override
@@ -46,6 +58,9 @@ public class Subtask extends Task {
                 getName(),
                 getStatus().name(),
                 getDescription(),
-                String.valueOf(epicId));
+                String.valueOf(epicId), // epicId
+                getDuration() != null ? String.valueOf(getDuration().toMinutes()) : "",
+                getStartTime() != null ? getStartTime().toString() : ""
+        );
     }
 }
