@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public abstract class Task {
-    private String name;
+    private final String name;
     private String description;
     private int id;
     private Status status;
@@ -14,6 +14,12 @@ public abstract class Task {
     private LocalDateTime startTime; // время начала
 
     public Task(String name, String description) {
+        this.name = name;
+        this.description = description;
+        this.status = Status.NEW;
+    }
+
+    public Task(String name, String description, Status status) {
         this.name = name;
         this.description = description;
         this.status = Status.NEW;
