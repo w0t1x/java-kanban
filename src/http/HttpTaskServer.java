@@ -33,17 +33,17 @@ public class HttpTaskServer {
         server.createContext("/prioritized", new PrioritizedHandler(manager, gson));
     }
 
-    public void start(){
+    public void start() {
         server.start();
         System.out.println("HTTP-сервер запущен на порту: " + PORT);
     }
 
-    public void stop(){
+    public void stop() {
         server.stop(0);
         System.out.println("HTTP-сервер остановлен.");
     }
 
-    public static Gson getGson(){
+    public static Gson getGson() {
         return gson;
     }
 
