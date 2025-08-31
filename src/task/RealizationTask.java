@@ -9,6 +9,10 @@ public class RealizationTask extends Task {
         super(id, name, description, status);
     }
 
+    public RealizationTask(String name, String description, Status status) {
+        super(name, description, status);
+    }
+
     @Override
     public TaskType getType() {
         return TaskType.TASK;
