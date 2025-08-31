@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FileBackedTaskManagerTest {
 
-    File tempFile;
-    FileBackedTaskManager manager;
+    private File tempFile;
+    private FileBackedTaskManager manager;
 
     @BeforeEach
     void setUp() throws IOException {
